@@ -79,7 +79,7 @@ jobs:
     #- name: Publish Client
     #  run: dotnet nuget push "TruckDown.Client/bin/Release/TruckDown.Client.1.0.${{ github.run_number }}.nupkg" --api-key  ${{ secrets.NUGET_APIKEY }} --source https://api.nuget.org/v3/index.json
     
-    - name: Publish Client - npm
-      run: npm publish --access public
-      working-directory: ./TruckDown.Client
+    #- name: Publish Client - npm
+    #  run: npm publish --access public
+    #  working-directory: ./TruckDown.Client
       
