@@ -23,15 +23,12 @@
 	  <PackageProjectUrl>https://github.com/truckdown/TruckDown.Client</PackageProjectUrl>
 	  <PackageLicenseFile>LICENSE</PackageLicenseFile>
 
-	  <AssemblyVersion Condition=" '$(BuildAssemblyVersion)' != '' ">$(BuildAssemblyVersion)</AssemblyVersion>
-	  <FileVersion Condition=" '$(BuildFileVersion)' != '' ">$(BuildFileVersion)</FileVersion>
-	  <Version Condition=" '$(BuildVersion)' != '' ">$(BuildVersion)</Version>
-	  <Version Condition=" '$(BuildVersion)' == '' ">1.0.0-alpha0</Version>
-	  <ReleaseVersion>1.0.0-alpha0</ReleaseVersion>
+	  <Version Condition=" '$(RunNumber)' != '' ">1.0.$(RunNumber)</Version>
+	  <Version Condition=" '$(RunNumber)' == '' ">1.0.0-alpha0</Version>
   </PropertyGroup>
 
 	<ItemGroup>
-		<None Include="..\LICENSE" Pack="true" PackagePath="LICENSE.md" />
+		<None Include="..\LICENSE" Pack="true" PackagePath="" />
 	</ItemGroup>
 
 	<ItemGroup>
