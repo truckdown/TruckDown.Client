@@ -34,6 +34,8 @@ jobs:
 
     - name: Restore dependencies Client - npm
       run: npm install TruckDown.Client/package.json
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_APIKEY }}
 
     - name: Build Abstractions
       run: dotnet build --configuration Release TruckDown.Client.Abstractions/TruckDown.Client.Abstractions.csproj --no-restore -p RunNumber=${{ github.run_number }}
