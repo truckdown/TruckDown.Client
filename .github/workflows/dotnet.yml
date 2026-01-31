@@ -25,6 +25,7 @@ jobs:
       uses: actions/setup-node@v4 # Step 2: Set up Node.js environment
       with:
         node-version: '24' # Specify the Node.js version
+        registry-url: 'https://registry.npmjs.org/'
 
     - name: Restore dependencies Abdtractions
       run: dotnet restore TruckDown.Client.Abstractions/TruckDown.Client.Abstractions.csproj
@@ -37,6 +38,10 @@ jobs:
       working-directory: ./TruckDown.Client
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_APIKEY }}
+
+    - name: Restore dependencies Client - npm
+      run: npm version 1.0.${{ github.run_number }}
+      working-directory: ./TruckDown.Client
 
     - name: Build Abstractions
       run: dotnet build --configuration Release TruckDown.Client.Abstractions/TruckDown.Client.Abstractions.csproj --no-restore -p RunNumber=${{ github.run_number }}
