@@ -22,7 +22,6 @@
 	  <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 	  <PackageProjectUrl>https://github.com/truckdown/TruckDown.Client</PackageProjectUrl>
 	  <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
-	  <PackageLicenseUrl>https://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
 
 	  <AssemblyVersion Condition=" '$(BuildAssemblyVersion)' != '' ">$(BuildAssemblyVersion)</AssemblyVersion>
 	  <FileVersion Condition=" '$(BuildFileVersion)' != '' ">$(BuildFileVersion)</FileVersion>
