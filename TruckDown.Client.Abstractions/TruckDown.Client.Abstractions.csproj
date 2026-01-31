@@ -21,7 +21,7 @@
 	  <PackageTags>truckdown</PackageTags>
 	  <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 	  <PackageProjectUrl>https://github.com/truckdown/TruckDown.Client</PackageProjectUrl>
-	  <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+	  <PackageLicenseFile>LICENSE</PackageLicenseFile>
 
 	  <AssemblyVersion Condition=" '$(BuildAssemblyVersion)' != '' ">$(BuildAssemblyVersion)</AssemblyVersion>
 	  <FileVersion Condition=" '$(BuildFileVersion)' != '' ">$(BuildFileVersion)</FileVersion>
