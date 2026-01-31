@@ -6,6 +6,7 @@ public class ContextInformation
     [MemberNotNullWhen(true, nameof(AccountId))]
     [MemberNotNullWhen(true, nameof(AccountNumber))]
     [MemberNotNullWhen(true, nameof(Username))]
+    [MemberNotNullWhen(true, nameof(Name))]
     [JsonPropertyName("isAuthenticated")]
     public bool IsAuthenticated { get; set; }
 
@@ -20,6 +21,9 @@ public class ContextInformation
 
     [JsonPropertyName("username")]
     public string? Username { get; set; }
+
+    [JsonPropertyName("name")]
+    public string? Name { get; set; }
 
     [JsonPropertyName("settings")]
     public Dictionary<string, string> Settings { get; set; }
