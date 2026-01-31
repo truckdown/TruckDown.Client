@@ -72,14 +72,21 @@ jobs:
 
     - name: Pack Client
       run: dotnet pack --configuration Release TruckDown.Client/TruckDown.Client.csproj --no-restore -p RunNumber=${{ github.run_number }}
-
-    #- name: PublishA bstractions
-    #  run: dotnet nuget push "TruckDown.Client.Abstractions/bin/Release/TruckDown.Client.Abstractions.1.0.${{ github.run_number }}.nupkg" --api-key  ${{ secrets.NUGET_APIKEY }} --source https://api.nuget.org/v3/index.json
-
-    #- name: Publish Client
-    #  run: dotnet nuget push "TruckDown.Client/bin/Release/TruckDown.Client.1.0.${{ github.run_number }}.nupkg" --api-key  ${{ secrets.NUGET_APIKEY }} --source https://api.nuget.org/v3/index.json
+      
+    # Get a short-lived NuGet API key
+    - name: NuGet login (OIDC ? temp API key)
+      uses: NuGet/login@v1
+      id: login
+      with:
+        user: ${{ secrets.NUGET_USERNAME }}
     
-    #- name: Publish Client - npm
-    #  run: npm publish --access public
-    #  working-directory: ./TruckDown.Client
+    - name: Publish Abstractions
+      run: dotnet nuget push "TruckDown.Client.Abstractions/bin/Release/TruckDown.Client.Abstractions.1.0.${{ github.run_number }}.nupkg" --api-key ${{steps.login.outputs.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
+
+    - name: Publish Client
+      run: dotnet nuget push "TruckDown.Client/bin/Release/TruckDown.Client.1.0.${{ github.run_number }}.nupkg" --api-key ${{steps.login.outputs.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
+    
+    - name: Publish Client - npm
+      run: npm publish --access public
+      working-directory: ./TruckDown.Client
       
