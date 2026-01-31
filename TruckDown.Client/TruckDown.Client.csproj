@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+	  <Nullable>enable</Nullable>
+	  <ImplicitUsings>enable</ImplicitUsings>
+	  <LangVersion>latestMajor</LangVersion>
+	  <RootNamespace>TruckDown.Client</RootNamespace>
+	  <IsPackable>true</IsPackable>
+
+	  <Authors>Peter Gordon</Authors>
+	  <Company>TruckDown Info International Inc.</Company>
+	  <Copyright>Copyright (c) 2026 TruckDown Info International Inc.</Copyright>
+	  <RepositoryUrl>https://github.com/truckdown/TruckDown.Client</RepositoryUrl>
+	  <RepositoryType>git</RepositoryType>
+
+	  <PackageId>TruckDown.Client</PackageId>
+	  <Title>TruckDown Client</Title>
+	  <Product>TruckDown Client</Product>
+	  <Description>TruckDown Client library</Description>
+	  <PackageTags>truckdown</PackageTags>
+	  <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+	  <PackageProjectUrl>https://github.com/truckdown/TruckDown.Client</PackageProjectUrl>
+	  <PackageLicenseFile>LICENSE</PackageLicenseFile>
+
+	  <Version Condition=" '$(RunNumber)' != '' ">1.0.$(RunNumber)</Version>
+	  <Version Condition=" '$(RunNumber)' == '' ">1.0.0-alpha0</Version>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\LICENSE" Pack="true" PackagePath="" />
+	</ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TruckDown.Client.Abstractions\TruckDown.Client.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -6,4 +6,5 @@
     <File Path="README.md" />
   </Folder>
   <Project Path="TruckDown.Client.Abstractions/TruckDown.Client.Abstractions.csproj" />
+  <Project Path="TruckDown.Client/TruckDown.Client.csproj" Id="f97c5abe-50b9-4e75-a96f-6289704bb951" />
 </Solution>

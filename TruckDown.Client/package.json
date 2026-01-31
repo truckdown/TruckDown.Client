@@ -1,0 +1,18 @@
+{
+  "name": "@truckdown/client",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "TruckDown javascript client",
+  "main": "dist/main.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [ "truckdown" ],
+  "author": "Peter Gordon <pgordon@truckdown.com>",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "eslint": "^9.39.2",
+    "typescript": "^5.9.3"
+  }
+}

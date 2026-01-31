@@ -20,13 +20,54 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 10.0.x
-    - name: Restore dependencies
+        
+    - name: Use Node.js
+      uses: actions/setup-node@v4 # Step 2: Set up Node.js environment
+      with:
+        node-version: '24' # Specify the Node.js version
+        cache: 'npm' # Optional: Caches npm dependencies for faster installs
+
+    - name: Restore dependencies Abdtractions
       run: dotnet restore TruckDown.Client.Abstractions/TruckDown.Client.Abstractions.csproj
-    - name: Build
+
+    - name: Restore dependencies Client
+      run: dotnet restore TruckDown.Client/TruckDown.Client.csproj
+
+    - name: Restore dependencies Client - npm
+      run: npm install TruckDown.Client/package.json
+
+    - name: Build Abstractions
       run: dotnet build --configuration Release TruckDown.Client.Abstractions/TruckDown.Client.Abstractions.csproj --no-restore -p RunNumber=${{ github.run_number }}
-    - name: Test
+
+    - name: Build Client
+      run: dotnet build --configuration Release TruckDown.Client/TruckDown.Client.csproj --no-restore -p RunNumber=${{ github.run_number }}
+
+    - name: Build Client - npm
+      run: npm run --prefix TruckDown.Client/package.json build
+
+    - name: Test Abstractions
       run: dotnet test --no-build --verbosity normal TruckDown.Client.Abstractions/TruckDown.Client.Abstractions.csproj
-    - name: Pack
+
+    - name: Test Client
+      run: dotnet test --no-build --verbosity normal TruckDown.Client/TruckDown.Client.csproj
+
+    - name: Test Client - npm
+      run: npm run --prefix TruckDown.Client/package.json test
+
+    - name: Pack Abstractions
       run: dotnet pack --configuration Release TruckDown.Client.Abstractions/TruckDown.Client.Abstractions.csproj --no-restore -p RunNumber=${{ github.run_number }}
-    - name: Publish
-      run: dotnet nuget push "TruckDown.Client.Abstractions/bin/Release/TruckDown.Client.Abstractions.1.0.${{ github.run_number }}.nupkg" --api-key  ${{ secrets.NUGET_APIKEY }} --source https://api.nuget.org/v3/index.json
+
+    - name: Pack Client
+      run: dotnet pack --configuration Release TruckDown.Client/TruckDown.Client.csproj --no-restore -p RunNumber=${{ github.run_number }}
+
+    #- name: PublishA bstractions
+    #  run: dotnet nuget push "TruckDown.Client.Abstractions/bin/Release/TruckDown.Client.Abstractions.1.0.${{ github.run_number }}.nupkg" --api-key  ${{ secrets.NUGET_APIKEY }} --source https://api.nuget.org/v3/index.json
+
+    #- name: Publish Client
+    #  run: dotnet nuget push "TruckDown.Client/bin/Release/TruckDown.Client.1.0.${{ github.run_number }}.nupkg" --api-key  ${{ secrets.NUGET_APIKEY }} --source https://api.nuget.org/v3/index.json
+    
+    - name: Publish Client - npm
+      run: npm publish TruckDown.Client/package.json --access public
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_APIKEY }}
+      
