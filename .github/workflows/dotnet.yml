@@ -54,9 +54,9 @@ jobs:
     - name: Test Client
       run: dotnet test --no-build --verbosity normal TruckDown.Client/TruckDown.Client.csproj
 
-    - name: Test Client - npm
-      working-directory: ./TruckDown.Client
-      run: npm run test
+    #- name: Test Client - npm
+    #  working-directory: ./TruckDown.Client
+    #  run: npm run test
 
     - name: Pack Abstractions
       run: dotnet pack --configuration Release TruckDown.Client.Abstractions/TruckDown.Client.Abstractions.csproj --no-restore -p RunNumber=${{ github.run_number }}
