@@ -10,6 +10,7 @@
   },
   "keywords": [ "truckdown" ],
   "author": "Peter Gordon <pgordon@truckdown.com>",
+  "repository": "https://github.com/truckdown/TruckDown.Client",
   "license": "Apache-2.0",
   "devDependencies": {
     "eslint": "^9.39.2",
