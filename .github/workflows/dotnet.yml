@@ -25,8 +25,6 @@ jobs:
       uses: actions/setup-node@v4 # Step 2: Set up Node.js environment
       with:
         node-version: '24' # Specify the Node.js version
-        cache: 'npm' # or 'yarn', 'pnpm'
-        cache-dependency-path: '**/package-lock.json' 
 
     - name: Restore dependencies Abdtractions
       run: dotnet restore TruckDown.Client.Abstractions/TruckDown.Client.Abstractions.csproj
