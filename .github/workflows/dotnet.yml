@@ -46,7 +46,7 @@ jobs:
 
     - name: Build Client - npm
       working-directory: ./TruckDown.Client
-      run: npm run --prefix build
+      run: npm run build
 
     - name: Test Abstractions
       run: dotnet test --no-build --verbosity normal TruckDown.Client.Abstractions/TruckDown.Client.Abstractions.csproj
