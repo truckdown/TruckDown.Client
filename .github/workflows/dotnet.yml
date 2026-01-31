@@ -28,3 +28,5 @@ jobs:
       run: dotnet test --no-build --verbosity normal TruckDown.Client.Abstractions/TruckDown.Client.Abstractions.csproj
     - name: Pack
       run: dotnet pack --configuration Release TruckDown.Client.Abstractions/TruckDown.Client.Abstractions.csproj --no-restore -p RunNumber=${{ github.run_number }}
+    - name: Publish
+      run: dotnet nuget push "TruckDown.Client.Abstractions/bin/Release/TruckDown.Client.Abstractions.1.0.${{ github.run_number }}.nupkg" --api-key  ${{ secrets.NUGET_APIKEY }} --source https://api.nuget.org/v3/index.json
