@@ -25,6 +25,8 @@ jobs:
       uses: actions/setup-node@v4 # Step 2: Set up Node.js environment
       with:
         node-version: '24' # Specify the Node.js version
+        cache: 'npm' # or 'yarn', 'pnpm'
+        cache-dependency-path: '**/package-lock.json' 
 
     - name: Restore dependencies Abdtractions
       run: dotnet restore TruckDown.Client.Abstractions/TruckDown.Client.Abstractions.csproj
@@ -33,7 +35,8 @@ jobs:
       run: dotnet restore TruckDown.Client/TruckDown.Client.csproj
 
     - name: Restore dependencies Client - npm
-      run: npm install TruckDown.Client/package.json
+      run: npm install
+      working-directory: ./TruckDown.Client
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_APIKEY }}
 
@@ -44,7 +47,8 @@ jobs:
       run: dotnet build --configuration Release TruckDown.Client/TruckDown.Client.csproj --no-restore -p RunNumber=${{ github.run_number }}
 
     - name: Build Client - npm
-      run: npm run --prefix TruckDown.Client/package.json build
+      working-directory: ./TruckDown.Client
+      run: npm run --prefix build
 
     - name: Test Abstractions
       run: dotnet test --no-build --verbosity normal TruckDown.Client.Abstractions/TruckDown.Client.Abstractions.csproj
@@ -53,7 +57,8 @@ jobs:
       run: dotnet test --no-build --verbosity normal TruckDown.Client/TruckDown.Client.csproj
 
     - name: Test Client - npm
-      run: npm run --prefix TruckDown.Client/package.json test
+      working-directory: ./TruckDown.Client
+      run: npm run test
 
     - name: Pack Abstractions
       run: dotnet pack --configuration Release TruckDown.Client.Abstractions/TruckDown.Client.Abstractions.csproj --no-restore -p RunNumber=${{ github.run_number }}
@@ -68,7 +73,8 @@ jobs:
     #  run: dotnet nuget push "TruckDown.Client/bin/Release/TruckDown.Client.1.0.${{ github.run_number }}.nupkg" --api-key  ${{ secrets.NUGET_APIKEY }} --source https://api.nuget.org/v3/index.json
     
     - name: Publish Client - npm
-      run: npm publish TruckDown.Client/package.json --access public
+      run: npm publish --access public
+      working-directory: ./TruckDown.Client
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_APIKEY }}
       

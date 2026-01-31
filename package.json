@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@truckdown/client": "file:TruckDown.Client"
+  }
+}
