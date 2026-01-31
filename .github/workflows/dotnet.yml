@@ -82,6 +82,4 @@ jobs:
     - name: Publish Client - npm
       run: npm publish --access public
       working-directory: ./TruckDown.Client
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_APIKEY }}
       
